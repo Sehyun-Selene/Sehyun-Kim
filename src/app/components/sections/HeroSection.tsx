@@ -18,9 +18,9 @@ export function HeroSection() {
   }, []);
 
   const taglineStyles = [
-    "display-font text-lg md:text-xl italic font-light",
-    "display-font text-4xl md:text-6xl font-bold",
-    "mono-font text-xs md:text-sm uppercase tracking-widest font-light",
+    "display-font italic font-light text-3xl md:text-4xl",
+    "display-font font-black text-5xl md:text-7xl",
+    "mono-font uppercase tracking-widest font-light text-base md:text-lg",
   ];
 
   return (
@@ -85,7 +85,7 @@ export function HeroSection() {
                   className={`${taglineStyles[index]} inline-block ${
                     isMobile
                       ? "text-lg sm:text-2xl leading-tight whitespace-normal"
-                      : "text-2xl sm:text-3xl md:text-5xl lg:text-[60px] leading-tight whitespace-nowrap"
+                      : "leading-tight whitespace-nowrap"
                   }`}
                 >
                   {line}

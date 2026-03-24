@@ -37,7 +37,8 @@ export function SkillsSection() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
-    const updateTouchMode = () => setIsTouchDevice(mediaQuery.matches);
+    const updateTouchMode = () =>
+      setIsTouchDevice(mediaQuery.matches || navigator.maxTouchPoints > 0);
 
     updateTouchMode();
     mediaQuery.addEventListener("change", updateTouchMode);
@@ -114,12 +115,13 @@ export function SkillsSection() {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {portfolioData.tools.map((tool, index) => (
-                <motion.div
+                <motion.button
                   key={index}
+                  type="button"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  onClick={() =>
+                  onPointerUp={() =>
                     isTouchDevice
                       ? setActiveToolIndex((current) => (current === index ? null : index))
                       : undefined
@@ -131,7 +133,7 @@ export function SkillsSection() {
                   }`}
                 >
                   <p className="text-lg">{tool}</p>
-                </motion.div>
+                </motion.button>
               ))}
             </div>
           </motion.div>

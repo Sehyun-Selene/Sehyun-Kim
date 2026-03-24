@@ -1,0 +1,19 @@
+/* Google Fonts - Portfolio Specific */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@300;400;500&display=swap');
+
+/* MoMA Style Guide Typography */
+body {
+  font-family: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.display-font {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.mono-font {
+  font-family: "DM Mono", monospace;
+}

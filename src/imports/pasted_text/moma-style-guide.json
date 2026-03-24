@@ -1,0 +1,104 @@
+{
+  "name": "MoMA Inspired Style Guide",
+  "version": "1.0.0",
+  "description": "A design system inspired by the Museum of Modern Art (MoMA) website, characterized by bold typography, high contrast, and a minimalist grid-based layout.",
+  "colors": {
+    "primary": {
+      "background": "#FFFFFF",
+      "text": "#000000",
+      "inverse_text": "#FFFFFF"
+    },
+    "accents": {
+      "blue": "#00C1F0",
+      "yellow": "#FFD700",
+      "black": "#000000"
+    },
+    "ui": {
+      "border": "#000000",
+      "divider": "#E0E0E0"
+    }
+  },
+  "typography": {
+    "font_family": {
+      "primary": "\"MoMA Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "secondary": "\"MoMA Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif"
+    },
+    "headings": {
+      "h1": {
+        "font_size": "60px",
+        "font_weight": "900",
+        "line_height": "1.0",
+        "letter_spacing": "-0.02em",
+        "text_transform": "none"
+      },
+      "h2": {
+        "font_size": "36px",
+        "font_weight": "900",
+        "line_height": "1.1",
+        "letter_spacing": "-0.01em"
+      },
+      "h3": {
+        "font_size": "24px",
+        "font_weight": "900",
+        "line_height": "1.2"
+      }
+    },
+    "body": {
+      "font_size": "18px",
+      "line_height": "1.5",
+      "font_weight": "400"
+    },
+    "caption": {
+      "font_size": "14px",
+      "line_height": "1.4",
+      "font_weight": "400"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "background_color": "#000000",
+        "text_color": "#FFFFFF",
+        "border_radius": "0px",
+        "padding": "12px 24px",
+        "font_weight": "700",
+        "text_transform": "none"
+      },
+      "accent": {
+        "background_color": "#00C1F0",
+        "text_color": "#000000",
+        "border_radius": "0px",
+        "padding": "8px 16px"
+      }
+    },
+    "cards": {
+      "border_radius": "0px",
+      "border": "none",
+      "padding": "0px",
+      "margin_bottom": "24px"
+    },
+    "navigation": {
+      "height": "80px",
+      "background_color": "#FFFFFF",
+      "link_font_size": "16px",
+      "link_font_weight": "700"
+    }
+  },
+  "layout": {
+    "grid": {
+      "columns": 12,
+      "gutter": "20px",
+      "max_width": "1440px"
+    },
+    "spacing": {
+      "section_padding": "60px 0px",
+      "container_margin": "0 auto"
+    }
+  },
+  "visual_style": {
+    "corners": "sharp",
+    "contrast": "high",
+    "imagery": "large-scale, high-quality art focus",
+    "whitespace": "generous but structured"
+  }
+}

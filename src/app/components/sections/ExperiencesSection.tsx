@@ -33,6 +33,17 @@ function useInView() {
 
 export function ExperiencesSection() {
   const { ref: sectionRef, isInView } = useInView();
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [activeAbroadIndex, setActiveAbroadIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const updateTouchMode = () => setIsTouchDevice(mediaQuery.matches);
+
+    updateTouchMode();
+    mediaQuery.addEventListener("change", updateTouchMode);
+    return () => mediaQuery.removeEventListener("change", updateTouchMode);
+  }, []);
 
   const categories = [
     { id: "abroad", label: "Abroad", key: "Abroad" as const },
@@ -87,16 +98,35 @@ export function ExperiencesSection() {
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                       className="group relative aspect-[4/3] overflow-hidden border border-border hover:border-primary transition-colors"
+                      onClick={() =>
+                        isTouchDevice
+                          ? setActiveAbroadIndex((current) => (current === index ? null : index))
+                          : undefined
+                      }
                     >
+                      {/*
+                        On touch devices, tap toggles the overlay state.
+                        On pointer devices, keep hover behavior.
+                      */}
+                      {(() => {
+                        const isActive = isTouchDevice && activeAbroadIndex === index;
+                        return (
+                          <>
                       {/* Image */}
                       <ImageWithFallback
                         src={abroadImages[index]}
                         alt={exp.title}
-                        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:opacity-30"
+                        className={`w-full h-full object-cover transition-all duration-500 ${
+                          isActive ? "scale-105 opacity-30" : "group-hover:scale-105 group-hover:opacity-30"
+                        }`}
                       />
                       
                       {/* Overlay - shows on hover */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div
+                        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+                          isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                        }`}
+                      >
                         <div className="text-center px-6">
                           <p className="mono-font text-2xl md:text-3xl uppercase tracking-widest text-black mb-3">
                             {exp.period}
@@ -110,11 +140,18 @@ export function ExperiencesSection() {
                       </div>
 
                       {/* Title - shows by default, hides on hover */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-500">
-                        <h4 className="font-light leading-tight text-white font-bold text-2xl md:text-[40px]">
+                      <div
+                        className={`absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 ${
+                          isActive ? "opacity-0" : "opacity-100 group-hover:opacity-0"
+                        }`}
+                      >
+                        <h4 className="font-light leading-tight text-white font-bold text-lg sm:text-xl md:text-[40px] break-words [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">
                           {exp.title}
                         </h4>
                       </div>
+                          </>
+                        );
+                      })()}
                     </motion.div>
                   ))}
                 </div>

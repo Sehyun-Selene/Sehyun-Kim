@@ -32,6 +32,17 @@ function useInView() {
 
 export function AboutSection() {
   const { ref: sectionRef, isInView } = useInView();
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [activeInterestIndex, setActiveInterestIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const updateTouchMode = () => setIsTouchDevice(mediaQuery.matches);
+
+    updateTouchMode();
+    mediaQuery.addEventListener("change", updateTouchMode);
+    return () => mediaQuery.removeEventListener("change", updateTouchMode);
+  }, []);
 
   return (
     <section id="about" ref={sectionRef} className="py-24 md:py-32 px-5 md:px-20">
@@ -82,9 +93,20 @@ export function AboutSection() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {portfolioData.interests.map((interest, index) => (
-              <div key={index} className="border border-border p-6 hover:bg-accent transition-colors">
+              <button
+                key={index}
+                type="button"
+                onClick={() =>
+                  isTouchDevice
+                    ? setActiveInterestIndex((current) => (current === index ? null : index))
+                    : undefined
+                }
+                className={`w-full text-left border border-border p-6 transition-colors ${
+                  isTouchDevice && activeInterestIndex === index ? "bg-accent" : "hover:bg-accent"
+                }`}
+              >
                 <p className="text-lg">{interest}</p>
-              </div>
+              </button>
             ))}
           </div>
         </motion.div>

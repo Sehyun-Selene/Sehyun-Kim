@@ -32,6 +32,17 @@ function useInView() {
 
 export function SkillsSection() {
   const { ref: sectionRef, isInView } = useInView();
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [activeToolIndex, setActiveToolIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const updateTouchMode = () => setIsTouchDevice(mediaQuery.matches);
+
+    updateTouchMode();
+    mediaQuery.addEventListener("change", updateTouchMode);
+    return () => mediaQuery.removeEventListener("change", updateTouchMode);
+  }, []);
 
   const getLevelWidth = (level: string) => {
     switch (level) {
@@ -108,7 +119,16 @@ export function SkillsSection() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="border border-border bg-background p-6 text-center hover:border-primary transition-colors hover:bg-[rgb(246,193,230)]"
+                  onClick={() =>
+                    isTouchDevice
+                      ? setActiveToolIndex((current) => (current === index ? null : index))
+                      : undefined
+                  }
+                  className={`border border-border bg-background p-6 text-center transition-colors ${
+                    isTouchDevice && activeToolIndex === index
+                      ? "border-primary bg-[rgb(246,193,230)]"
+                      : "hover:border-primary hover:bg-[rgb(246,193,230)]"
+                  }`}
                 >
                   <p className="text-lg">{tool}</p>
                 </motion.div>

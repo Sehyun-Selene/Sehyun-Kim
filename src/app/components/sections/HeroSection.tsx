@@ -1,8 +1,20 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { portfolioData } from "../../data/content";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function HeroSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
   const taglineStyles = [
     "display-font text-lg md:text-xl italic font-light",
     "display-font text-4xl md:text-6xl font-bold",
@@ -53,11 +65,14 @@ export function HeroSection() {
                 className="overflow-visible pb-2"
               >
                 <motion.p
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: "auto", opacity: 1 }}
+                  initial={isMobile ? { opacity: 0, y: 10 } : { width: 0, opacity: 0 }}
+                  animate={isMobile ? { opacity: 1, y: 0 } : { width: "auto", opacity: 1 }}
                   transition={{
-                    width: { duration: 1.5, delay: 0.6 + index * 0.4 },
+                    width: isMobile
+                      ? undefined
+                      : { duration: 1.5, delay: 0.6 + index * 0.4 },
                     opacity: { duration: 0.3, delay: 0.5 + index * 0.4 },
+                    y: isMobile ? { duration: 0.35, delay: 0.5 + index * 0.3 } : undefined,
                   }}
                   className={`${taglineStyles[index]} inline-block text-2xl sm:text-3xl md:text-5xl lg:text-[60px] leading-tight break-words`}
                 >

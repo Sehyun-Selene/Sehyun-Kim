@@ -111,7 +111,7 @@ export function ExperiencesSection() {
 
                       {/* Title - shows by default, hides on hover */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-500">
-                        <h4 className="font-light leading-tight text-white font-bold text-[40px]">
+                        <h4 className="font-light leading-tight text-white font-bold text-2xl md:text-[40px]">
                           {exp.title}
                         </h4>
                       </div>

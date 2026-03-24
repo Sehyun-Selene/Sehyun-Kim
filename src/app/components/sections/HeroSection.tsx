@@ -38,7 +38,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="display-font text-muted-foreground text-right font-black text-[104px] md:text-[116px] lg:text-[128px] md:translate-x-16 lg:translate-x-24"
+              className="display-font text-muted-foreground text-right font-black text-[56px] sm:text-[72px] md:text-[104px] lg:text-[128px] md:translate-x-16 lg:translate-x-24 leading-none"
             >Sehyun Kim</motion.p>
           </div>
 
@@ -59,7 +59,7 @@ export function HeroSection() {
                     width: { duration: 1.5, delay: 0.6 + index * 0.4 },
                     opacity: { duration: 0.3, delay: 0.5 + index * 0.4 },
                   }}
-                  className={`${taglineStyles[index]} whitespace-nowrap inline-block text-[60px] leading-tight`}
+                  className={`${taglineStyles[index]} inline-block text-2xl sm:text-3xl md:text-5xl lg:text-[60px] leading-tight break-words`}
                 >
                   {line}
                 </motion.p>

@@ -65,14 +65,14 @@ export function HeroSection() {
                 className="overflow-visible pb-2"
               >
                 <motion.p
-                  initial={{ opacity: 0, y: 10, clipPath: "inset(0 100% 0 0)" }}
-                  animate={{ opacity: 1, y: 0, clipPath: "inset(0 0% 0 0)" }}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{
                     duration: isMobile ? 0.7 : 1.2,
                     delay: 0.5 + index * 0.35,
                     ease: "easeOut",
                   }}
-                  className={`${taglineStyles[index]} inline-block text-2xl sm:text-3xl md:text-5xl lg:text-[60px] leading-tight whitespace-nowrap`}
+                  className={`${taglineStyles[index]} inline-block text-lg sm:text-2xl md:text-5xl lg:text-[60px] leading-tight whitespace-normal md:whitespace-nowrap`}
                 >
                   {line}
                 </motion.p>

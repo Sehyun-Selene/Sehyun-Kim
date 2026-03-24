@@ -4,7 +4,9 @@ import { portfolioData } from "../../data/content";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function HeroSection() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia("(max-width: 767px)").matches : false
+  );
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -67,18 +69,18 @@ export function HeroSection() {
                 <motion.p
                   initial={
                     isMobile
-                      ? { opacity: 0, x: -16 }
-                      : { opacity: 0, y: 10, clipPath: "inset(0 100% 0 0)" }
+                      ? { opacity: 0, y: 8 }
+                      : { width: 0, opacity: 0 }
                   }
                   animate={
                     isMobile
-                      ? { opacity: 1, x: 0 }
-                      : { opacity: 1, y: 0, clipPath: "inset(0 0% 0 0)" }
+                      ? { opacity: 1, y: 0 }
+                      : { width: "auto", opacity: 1 }
                   }
                   transition={{
-                    duration: isMobile ? 0.7 : 1.2,
-                    delay: 0.5 + index * 0.35,
-                    ease: "easeOut",
+                    width: isMobile ? undefined : { duration: 1.5, delay: 0.6 + index * 0.4 },
+                    opacity: { duration: 0.3, delay: 0.5 + index * 0.4 },
+                    y: isMobile ? { duration: 0.35, delay: 0.5 + index * 0.3 } : undefined,
                   }}
                   className={`${taglineStyles[index]} inline-block ${
                     isMobile

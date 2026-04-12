@@ -76,9 +76,12 @@ export function GNB() {
       ]);
       const mainTitle = topLevelSections.has(href) ? element.querySelector("h2") : null;
       const targetElement = mainTitle ?? element;
-      const visualGap = href === "#contact" ? 32 : 20;
+      const visualGap = href === "#contact" ? 72 : 20;
       const targetY =
-        window.scrollY + targetElement.getBoundingClientRect().top - navHeight - visualGap;
+        window.scrollY +
+        targetElement.getBoundingClientRect().top -
+        navHeight -
+        visualGap;
 
       window.scrollTo({
         top: Math.max(0, targetY),

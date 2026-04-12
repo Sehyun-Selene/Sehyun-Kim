@@ -63,7 +63,11 @@ export function ProjectsSection() {
   const projectSlots = Array.from({ length: totalSlots }, (_, index) => projects[index] ?? null);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 md:py-32 px-5 md:px-20 bg-secondary">
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="pt-24 md:pt-32 pb-10 md:pb-14 px-5 md:px-20 bg-secondary"
+    >
       <div className="max-w-[1440px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

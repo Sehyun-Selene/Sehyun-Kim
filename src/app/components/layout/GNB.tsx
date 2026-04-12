@@ -67,10 +67,16 @@ export function GNB() {
     const element = document.querySelector(href);
     if (element) {
       const navHeight = 80;
-      const topLevelSections = new Set(["#about", "#skills", "#experiences", "#projects"]);
+      const topLevelSections = new Set([
+        "#about",
+        "#skills",
+        "#experiences",
+        "#projects",
+        "#contact",
+      ]);
       const mainTitle = topLevelSections.has(href) ? element.querySelector("h2") : null;
       const targetElement = mainTitle ?? element;
-      const visualGap = 20;
+      const visualGap = href === "#contact" ? 32 : 20;
       const targetY =
         window.scrollY + targetElement.getBoundingClientRect().top - navHeight - visualGap;
 

@@ -47,7 +47,11 @@ export function Footer() {
       : undefined;
 
   return (
-    <footer id="contact" ref={sectionRef} className="py-24 md:py-32 px-5 md:px-20 border-t border-border">
+    <footer
+      id="contact"
+      ref={sectionRef}
+      className="scroll-mt-[112px] py-24 md:py-32 px-5 md:px-20 border-t border-border"
+    >
       <div className="max-w-[1440px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

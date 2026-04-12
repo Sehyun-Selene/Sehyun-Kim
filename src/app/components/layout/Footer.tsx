@@ -36,6 +36,7 @@ export function Footer() {
   const emailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
     portfolioData.contact.email
   )}`;
+  const phoneTelHref = `tel:${portfolioData.contact.phone.replace(/\D/g, "")}`;
 
   return (
     <footer id="contact" ref={sectionRef} className="py-24 md:py-32 px-5 md:px-20 border-t border-border">
@@ -91,9 +92,15 @@ export function Footer() {
               href={emailComposeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mono-font text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="block mono-font text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               {portfolioData.contact.email}
+            </a>
+            <a
+              href={phoneTelHref}
+              className="block mono-font text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {portfolioData.contact.phone}
             </a>
             <div className="w-24 h-px bg-border mx-auto my-6"></div>
             <p className="display-font text-2xl">{portfolioData.name}</p>

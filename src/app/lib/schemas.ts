@@ -30,6 +30,7 @@ export const ProjectSchema = z.object({
 export const ContactSchema = z.object({
   instagram: z.string().url(),
   email: z.string().email(),
+  phone: z.string().min(1),
 });
 
 export const PortfolioDataSchema = z.object({

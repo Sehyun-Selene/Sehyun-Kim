@@ -147,5 +147,6 @@ export const portfolioData: PortfolioData = PortfolioDataSchema.parse({
   contact: {
     instagram: "https://www.instagram.com/12imsehyun/",
     email: "su9pta1r@snu.ac.kr",
+    phone: "010. 5633. 3658",
   },
 });

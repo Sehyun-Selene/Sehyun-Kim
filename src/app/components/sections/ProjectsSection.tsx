@@ -31,6 +31,31 @@ function useInView() {
   return { ref, isInView };
 }
 
+function projectTitlePlain(title: string) {
+  return title.replace(/\n/g, " ").trim();
+}
+
+function ProjectHeading({ title }: { title: string }) {
+  const lines = title.split("\n");
+  if (lines.length === 1) {
+    return (
+      <h3 className="text-lg md:text-xl display-font leading-tight break-words [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">
+        {title}
+      </h3>
+    );
+  }
+  const [first, ...rest] = lines;
+  const second = rest.join("\n");
+  return (
+    <h3 className="display-font leading-tight">
+      <span className="block text-lg md:text-xl">{first}</span>
+      <span className="mt-1 block text-[clamp(0.6875rem,2.2vw,0.8125rem)] sm:text-xs md:text-sm lg:text-[0.9375rem] leading-snug tracking-tight md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+        {second}
+      </span>
+    </h3>
+  );
+}
+
 export function ProjectsSection() {
   const { ref: sectionRef, isInView } = useInView();
   const projects = portfolioData.projects;
@@ -67,18 +92,18 @@ export function ProjectsSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      aria-label={`${project.title} — 열기 (새 탭)`}
+                      aria-label={`${projectTitlePlain(project.title)} — 열기 (새 탭)`}
                     >
                       <ImageWithFallback
                         src={project.imageUrl}
-                        alt={`${project.title} poster`}
+                        alt={`${projectTitlePlain(project.title)} poster`}
                         className="w-full h-full object-cover"
                       />
                     </a>
                   ) : (
                     <ImageWithFallback
                       src={project.imageUrl}
-                      alt={`${project.title} poster`}
+                      alt={`${projectTitlePlain(project.title)} poster`}
                       className="w-full h-full object-cover"
                     />
                   )
@@ -95,15 +120,19 @@ export function ProjectsSection() {
               {/* Project Info */}
               <div className="space-y-3">
                 <div className="flex items-baseline gap-3">
-                  <h3 className="text-lg md:text-xl display-font leading-tight break-words [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">
-                    {project ? project.title : "Coming Soon"}
-                  </h3>
+                  {project ? (
+                    <ProjectHeading title={project.title} />
+                  ) : (
+                    <h3 className="text-lg md:text-xl display-font leading-tight break-words [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">
+                      Coming Soon
+                    </h3>
+                  )}
                 </div>
                 <p className="mono-font text-xs uppercase tracking-widest text-muted-foreground">
                   {project ? project.type : "Future Project"}
                 </p>
                 {project?.description && (
-                  <p className="text-sm md:text-base leading-relaxed">{project.description}</p>
+                  <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">{project.description}</p>
                 )}
               </div>
             </motion.div>

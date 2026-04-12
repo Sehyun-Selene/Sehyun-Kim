@@ -24,6 +24,7 @@ export const ProjectSchema = z.object({
   type: z.string(),
   description: z.string().optional(),
   imageUrl: z.string().min(1).optional(),
+  linkUrl: z.string().url().optional(),
 });
 
 export const ContactSchema = z.object({

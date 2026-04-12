@@ -135,6 +135,14 @@ export const portfolioData: PortfolioData = PortfolioDataSchema.parse({
         "청년 불안을 주제로 Twine으로 개발한 인터랙티브 스토리텔링 게임.",
       imageUrl: "/images/project-anxiety.jpg",
     },
+    {
+      title: "NARSHA-한국어 학습에 날개를 달다",
+      type: "Korean Education All-In-One Website",
+      description:
+        "(진행 중) 한국어 학습자들을 위한 학습 유형 맞춤 서칭 및 커리큘럼 제공 플랫폼 제작 프로젝트",
+      imageUrl: "/images/project-narsha.png",
+      linkUrl: "https://narsha-mvp-ver2.vercel.app/",
+    },
   ],
   contact: {
     instagram: "https://www.instagram.com/12imsehyun/",

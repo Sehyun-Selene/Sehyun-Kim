@@ -61,11 +61,27 @@ export function ProjectsSection() {
               {/* Project Poster - Poster Ratio */}
               <div className="relative mb-4 aspect-[3/4] bg-muted border-2 border-border overflow-hidden">
                 {project?.imageUrl ? (
-                  <ImageWithFallback
-                    src={project.imageUrl}
-                    alt={`${project.title} poster`}
-                    className="w-full h-full object-cover"
-                  />
+                  project.linkUrl ? (
+                    <a
+                      href={project.linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      aria-label={`${project.title} — 열기 (새 탭)`}
+                    >
+                      <ImageWithFallback
+                        src={project.imageUrl}
+                        alt={`${project.title} poster`}
+                        className="w-full h-full object-cover"
+                      />
+                    </a>
+                  ) : (
+                    <ImageWithFallback
+                      src={project.imageUrl}
+                      alt={`${project.title} poster`}
+                      className="w-full h-full object-cover"
+                    />
+                  )
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="mono-font text-sm text-muted-foreground uppercase tracking-wider">
@@ -73,7 +89,7 @@ export function ProjectsSection() {
                     </span>
                   </div>
                 )}
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300 pointer-events-none"></div>
               </div>
 
               {/* Project Info */}

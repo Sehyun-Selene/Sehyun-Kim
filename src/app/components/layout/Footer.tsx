@@ -36,7 +36,15 @@ export function Footer() {
   const emailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
     portfolioData.contact.email
   )}`;
-  const phoneTelHref = `tel:${portfolioData.contact.phone.replace(/\D/g, "")}`;
+  const digitsOnly = portfolioData.contact.phone.replace(/\D/g, "");
+  const phoneTelHref =
+    digitsOnly.length > 0
+      ? digitsOnly.startsWith("82")
+        ? `tel:+${digitsOnly}`
+        : digitsOnly.startsWith("010")
+          ? `tel:+82${digitsOnly.slice(1)}`
+          : `tel:+${digitsOnly}`
+      : undefined;
 
   return (
     <footer id="contact" ref={sectionRef} className="py-24 md:py-32 px-5 md:px-20 border-t border-border">
@@ -82,32 +90,35 @@ export function Footer() {
             </a>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="pt-12 space-y-2"
-          >
-            <a
-              href={emailComposeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block mono-font text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {portfolioData.contact.email}
-            </a>
-            <a
-              href={phoneTelHref}
-              className="block mono-font text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {portfolioData.contact.phone}
-            </a>
+          <div className="pt-12 flex flex-col items-center">
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href={emailComposeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mono-font text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {portfolioData.contact.email}
+              </a>
+              {phoneTelHref ? (
+                <a
+                  href={phoneTelHref}
+                  className="mono-font text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {portfolioData.contact.phone}
+                </a>
+              ) : (
+                <span className="mono-font text-sm text-muted-foreground">
+                  {portfolioData.contact.phone}
+                </span>
+              )}
+            </div>
             <div className="w-24 h-px bg-border mx-auto my-6"></div>
             <p className="display-font text-2xl">{portfolioData.name}</p>
             <p className="mono-font text-xs uppercase tracking-widest text-muted-foreground">
               © 2026 All Rights Reserved
             </p>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </footer>

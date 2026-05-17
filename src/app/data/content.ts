@@ -17,7 +17,7 @@ export const portfolioData: PortfolioData = PortfolioDataSchema.parse({
     {
       institution: "Seoul National University",
       major: "Korean Language and Literature / Information Science and Culture",
-      period: "재학",
+      period: "Currently Enrolled",
     },
   ],
   interests: [
@@ -125,23 +125,33 @@ export const portfolioData: PortfolioData = PortfolioDataSchema.parse({
       title: "층",
       type: "Participatory VR Program",
       description:
-        "인터랙티브 기사를 모티브로 층간소음 사회 문제를 다룬 참여형 가상현실 프로그램. 글·영상을 넘어선 현실감으로 경각심을 유도.",
+        "인터랙티브 기사를 모티브로 층간소음 사회\n문제를 다룬 참여형 가상현실 프로그램.\n글·영상을 넘어선 현실감으로 경각심을 유도.",
       imageUrl: "/images/project-floor.jpg",
     },
     {
       title: "The Devil of Anxiety — Arc.Number 100",
       type: "Interactive Storytelling Game",
       description:
-        "청년 불안을 주제로 Twine으로 개발한 인터랙티브 스토리텔링 게임.",
+        "청년 불안을 주제로 Twine으로 개발한\n인터랙티브 스토리텔링 게임.",
       imageUrl: "/images/project-anxiety.jpg",
     },
     {
-      title: "NARSHA\n-한국어 학습에 날개를 달다",
+      title: "NARSHA -한국어 학습에 날개를 달다",
       type: "Korean Education All-In-One Website",
       description:
-        "한국어 학습자들을 위한 학습 유형 맞춤 서칭 및 커리큘럼 제공 플랫폼 제작 프로젝트.\n(진행 중)",
+        "한국어 학습자들을 위한 학습 유형 맞춤 서칭 및 커리큘럼\n제공 플랫폼 제작 프로젝트. (진행 중)",
       imageUrl: "/images/project-narsha.png",
       linkUrl: "https://narsha-mvp-ver2.vercel.app/",
+    },
+    {
+      title: "썸네일 고수 ThumbGo",
+      type: "B2B SaaS + B2C Cashwalk Service",
+      description:
+        "DWNC 단체 해커톤 최우수작.\n유튜브 에이전시 전용 실존하는 테스터 풀을\n대상으로 한 썸네일 검증 Saas.",
+      imageUrl: "/images/project-thumbgo.png",
+      imageFit: "contain",
+      imageBgColor: "#f0f0f0",
+      linkUrl: "https://thumb-go-web.vercel.app/",
     },
   ],
   contact: {

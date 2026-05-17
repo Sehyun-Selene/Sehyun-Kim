@@ -1,5 +1,5 @@
 /* Google Fonts - Portfolio Specific */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap');
 
 /* MoMA Style Guide Typography */
 body {
@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5, h6, button {
 
 .display-font {
   font-family: "Cormorant Garamond", serif;
+}
+
+.display-font-kr {
+  font-family: "Cormorant Garamond", "Noto Serif KR", serif;
 }
 
 .mono-font {

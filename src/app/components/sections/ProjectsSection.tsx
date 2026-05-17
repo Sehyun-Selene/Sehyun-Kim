@@ -39,7 +39,7 @@ function ProjectHeading({ title }: { title: string }) {
   const lines = title.split("\n");
   if (lines.length === 1) {
     return (
-      <h3 className="text-lg md:text-xl display-font leading-tight break-words [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">
+      <h3 className="display-font-kr text-sm md:text-base leading-tight break-words [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">
         {title}
       </h3>
     );
@@ -48,8 +48,8 @@ function ProjectHeading({ title }: { title: string }) {
   const second = rest.join("\n");
   return (
     <h3 className="display-font leading-tight">
-      <span className="block text-lg md:text-xl">{first}</span>
-      <span className="mt-1 block text-[clamp(0.6875rem,2.2vw,0.8125rem)] sm:text-xs md:text-sm lg:text-[0.9375rem] leading-snug tracking-tight md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+      <span className="block text-sm md:text-base">{first}</span>
+      <span className="mt-1 block text-[clamp(0.625rem,2vw,0.75rem)] sm:text-xs md:text-xs leading-snug tracking-tight md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
         {second}
       </span>
     </h3>
@@ -74,8 +74,8 @@ export function ProjectsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="display-font text-5xl md:text-7xl font-light mb-4">Projects</h2>
-          <div className="w-24 h-px bg-border mb-16"></div>
+          <h2 className="display-font text-5xl md:text-7xl font-light mb-4 text-center">Projects</h2>
+          <div className="w-24 h-px bg-border mb-16 mx-auto"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -87,8 +87,22 @@ export function ProjectsSection() {
               transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
               className="group"
             >
+              {/* Project Title — above poster */}
+              <div className="mb-3">
+                {project ? (
+                  <ProjectHeading title={project.title} />
+                ) : (
+                  <h3 className="display-font-kr text-sm md:text-base leading-tight">
+                    Coming Soon
+                  </h3>
+                )}
+              </div>
+
               {/* Project Poster - Poster Ratio */}
-              <div className="relative mb-4 aspect-[3/4] bg-muted border-2 border-border overflow-hidden">
+              <div
+                className="relative mb-4 aspect-[4/5] border-2 border-border overflow-hidden"
+                style={{ backgroundColor: project?.imageBgColor ?? undefined }}
+              >
                 {project?.imageUrl ? (
                   project.linkUrl ? (
                     <a
@@ -101,18 +115,18 @@ export function ProjectsSection() {
                       <ImageWithFallback
                         src={project.imageUrl}
                         alt={`${projectTitlePlain(project.title)} poster`}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full ${project.imageFit === "contain" ? "object-contain p-6" : "object-cover"}`}
                       />
                     </a>
                   ) : (
                     <ImageWithFallback
                       src={project.imageUrl}
                       alt={`${projectTitlePlain(project.title)} poster`}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full ${project.imageFit === "contain" ? "object-contain p-6" : "object-cover"}`}
                     />
                   )
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center bg-muted">
                     <span className="mono-font text-sm text-muted-foreground uppercase tracking-wider">
                       Coming Soon
                     </span>
@@ -123,20 +137,16 @@ export function ProjectsSection() {
 
               {/* Project Info */}
               <div className="space-y-3">
-                <div className="flex items-baseline gap-3">
-                  {project ? (
-                    <ProjectHeading title={project.title} />
-                  ) : (
-                    <h3 className="text-lg md:text-xl display-font leading-tight break-words [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">
-                      Coming Soon
-                    </h3>
-                  )}
-                </div>
+                {project?.subtitle && (
+                  <p className="mono-font text-xs uppercase tracking-widest text-muted-foreground">
+                    {project.subtitle}
+                  </p>
+                )}
                 <p className="mono-font text-xs uppercase tracking-widest text-muted-foreground">
                   {project ? project.type : "Future Project"}
                 </p>
                 {project?.description && (
-                  <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">{project.description}</p>
+                  <p className="text-xs md:text-sm leading-relaxed whitespace-pre-line">{project.description}</p>
                 )}
               </div>
             </motion.div>

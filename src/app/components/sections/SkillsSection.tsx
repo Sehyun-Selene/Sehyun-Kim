@@ -57,8 +57,8 @@ export function SkillsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="display-font text-5xl md:text-7xl font-light mb-4">Skills</h2>
-          <div className="w-24 h-px bg-border mb-16"></div>
+          <h2 className="display-font text-5xl md:text-7xl font-light mb-4 text-center">Skills</h2>
+          <div className="w-24 h-px bg-border mb-16 mx-auto"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -76,7 +76,7 @@ export function SkillsSection() {
               {portfolioData.languages.map((lang, index) => (
                 <div key={index}>
                   <div className="flex justify-between mb-2">
-                    <span className="text-lg">{lang.language}</span>
+                    <span className="text-base">{lang.language}</span>
                     <span className="mono-font text-sm text-muted-foreground">{lang.level}</span>
                   </div>
                   <div className="h-1 bg-border w-full">
@@ -117,7 +117,7 @@ export function SkillsSection() {
                       : "hover:border-primary hover:bg-[rgb(246,193,230)]"
                   }`}
                 >
-                  <p className="text-lg">{tool}</p>
+                  <p className="text-base">{tool}</p>
                 </motion.button>
               ))}
             </div>

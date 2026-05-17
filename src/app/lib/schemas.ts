@@ -21,9 +21,12 @@ export const ExperienceItemSchema = z.object({
 
 export const ProjectSchema = z.object({
   title: z.string(),
+  subtitle: z.string().optional(),
   type: z.string(),
   description: z.string().optional(),
   imageUrl: z.string().min(1).optional(),
+  imageFit: z.enum(["cover", "contain"]).optional(),
+  imageBgColor: z.string().optional(),
   linkUrl: z.string().url().optional(),
 });
 

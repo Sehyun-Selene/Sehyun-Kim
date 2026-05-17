@@ -5,42 +5,17 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 interface NavItem {
   label: string;
   href: string;
-  subItems?: { label: string; href: string }[];
 }
 
 const navItems: NavItem[] = [
-  {
-    label: "About",
-    href: "#about",
-    subItems: [
-      { label: "Academic Background", href: "#academic" },
-      { label: "Interests", href: "#interests" },
-      { label: "Values", href: "#values" },
-    ],
-  },
-  {
-    label: "Skills",
-    href: "#skills",
-    subItems: [
-      { label: "Languages", href: "#languages" },
-      { label: "Tools", href: "#tools" },
-    ],
-  },
-  {
-    label: "Experiences",
-    href: "#experiences",
-    subItems: [
-      { label: "Abroad", href: "#abroad" },
-      { label: "Inner School", href: "#inner-school" },
-      { label: "Outer School", href: "#outer-school" },
-    ],
-  },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experiences", href: "#experiences" },
   { label: "Projects", href: "#projects" },
 ];
 
 export function GNB() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
@@ -126,32 +101,13 @@ export function GNB() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {navItems.map((item) => (
-                <div
+                <button
                   key={item.label}
-                  className="relative group pb-4 -mb-4"
-                  onMouseEnter={() => setActiveDropdown(item.label)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+                  onClick={() => handleNavClick(item.href)}
+                  className="mono-font uppercase text-sm tracking-wider hover:opacity-70 transition-opacity"
                 >
-                  <button
-                    onClick={() => handleNavClick(item.href)}
-                    className="mono-font uppercase text-sm tracking-wider hover:opacity-70 transition-opacity"
-                  >
-                    {item.label}
-                  </button>
-                  {item.subItems && activeDropdown === item.label && (
-                    <div className="absolute top-full left-0 bg-background border border-border min-w-[200px] shadow-lg">
-                      {item.subItems.map((subItem) => (
-                        <button
-                          key={subItem.label}
-                          onClick={() => handleNavClick(subItem.href)}
-                          className="block w-full text-left px-4 py-3 text-sm hover:bg-accent hover:text-accent-foreground transition-colors"
-                        >
-                          {subItem.label}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  {item.label}
+                </button>
               ))}
             </div>
 
@@ -182,27 +138,13 @@ export function GNB() {
         <div className="fixed inset-0 z-40 bg-background md:hidden" style={{ top: "80px" }}>
           <div className="px-5 py-8 space-y-6">
             {navItems.map((item) => (
-              <div key={item.label}>
-                <button
-                  onClick={() => handleNavClick(item.href)}
-                  className="mono-font uppercase text-lg tracking-wider w-full text-left"
-                >
-                  {item.label}
-                </button>
-                {item.subItems && (
-                  <div className="mt-3 ml-4 space-y-2">
-                    {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem.label}
-                        onClick={() => handleNavClick(subItem.href)}
-                        className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {subItem.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <button
+                key={item.label}
+                onClick={() => handleNavClick(item.href)}
+                className="mono-font uppercase text-lg tracking-wider w-full text-left"
+              >
+                {item.label}
+              </button>
             ))}
             <button
               onClick={() => handleNavClick("#contact")}
